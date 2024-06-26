@@ -10,6 +10,20 @@
 - Add/edit your cards/modules
 - Test yourself :)
 
+## Technology Stack
+
+This project is built using the following technologies:
+
+- **React** for building the user interface
+- **Redux Toolkit** for state management
+- **React Router** for navigation
+- **Bootstrap** and **Emotion** for styling
+- **Axios** for API calls
+- **Vite** as the build tool
+- **Anime.js** for animations
+- **Formik** for form handling
+- **React Toastify** for adding notifications
+
 ## Backend Work
 
 - Proper Input Validation
