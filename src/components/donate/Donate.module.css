@@ -1,0 +1,94 @@
+.centerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 800px;
+  min-height: 900px;
+  border-radius: 30px;
+  background: rgba(241, 241, 245, 1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 63px auto;
+  overflow: hidden;
+}
+
+.donateContainer {
+  font-family: Poppins;
+  font-size: 1em;
+  font-weight: 300;
+  display: flex;
+  flex-direction: row; /* Change the direction to a line for larger screens */
+  width: 720px;
+  height: 134px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.25);
+  margin: auto;
+  margin-bottom: 4rem;
+  align-items: center; /* Center alignment */
+  justify-content: center; /* Center alignment */
+}
+
+.header {
+  font-family: Poppins;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 43.65px;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 60px;
+}
+
+.text {
+  font-family: Poppins;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 43.65px;
+  margin-left: 80px;
+  margin-top: 50px;
+}
+
+.icon {
+  width: 140px;
+  height: 67px;
+}
+
+.coffee {
+  width: 100px;
+  height: 100px;
+  padding-left: 1.7rem;
+  padding-bottom: 1.7rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+  .donateContainer {
+    flex-direction: column; /* Changing directions of column for mobile devices */
+    width: 90%;
+    height: auto; /* Automatic height */
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  .icon {
+    margin: auto;
+    width: 100px; /* Reduce icon for mobile devices */
+    height: 100px;
+  }
+
+  .text {
+    margin: 10px 0 0 0; /* Remove the indentation on the left, add it on the top */
+    font-size: 1em; /* Reducing font size */
+    text-align: center; /* Centering text */
+  }
+
+  .coffee {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+  }
+}

@@ -1,0 +1,35 @@
+.yellow-button {
+  border: 2px solid #ffc107;
+  /* border: 2px solid #4e7b79; */
+  border-radius: 10px;
+  background-color: transparent;
+  /* color: #4e7b79; */
+  color: #ffc107;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;  
+  white-space: nowrap;  
+  width: auto;  
+}
+
+@media (max-width: 600px) {
+  .yellow-button {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .yellow-button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .yellow-button {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+}

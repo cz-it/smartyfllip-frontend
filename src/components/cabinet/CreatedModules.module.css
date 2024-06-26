@@ -1,0 +1,143 @@
+.infoCreateModules {
+  border: 1px solid darkgreen;
+  background-color: #f1f1f5;
+  border-radius: 10px;
+  margin-left: 1.5rem;
+  padding: 1rem;
+}
+
+.infoCreateCards {
+  border: 1px solid darkgreen;
+  background-color: #f1f1f5;
+  border-radius: 10px;
+  margin-right: 1.5rem;
+  padding: 1.5rem;
+}
+
+.infoCreateCards,
+.infoCreateModules {
+  max-width: 55rem;
+}
+
+.btnBlock {
+  margin: auto;
+  padding: 1.5rem;
+}
+
+.moduleDiv {
+  border: 1px solid #17a68a;
+  border-radius: 10px;
+  padding: 0.8rem;
+}
+
+.cardDiv {
+  border: 1px solid #17a68a;
+  border-radius: 5px;
+  min-width: 45px;
+}
+
+.mymodule {
+  cursor: pointer;
+}
+
+.formControl {
+  height: auto;
+  width: 100%;
+  max-width: 720px;
+}
+
+.container {
+  margin: 2rem auto;
+}
+
+@media screen and (min-width: 1921px) {
+  .title {
+    padding-top: 5rem;
+  }
+
+  .container {
+    padding-top: 10rem;
+    margin: auto;
+    min-height: 84rem;
+    max-width: 140rem;
+  }
+
+  .infoCreateModules {
+    margin: auto;
+  }
+
+  .infoCreateCards {
+    margin: auto;
+    padding-top: 2rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .container {
+    padding-left: 5rem;
+    padding-top: 5rem;
+  }
+
+  .formControl {
+    height: 10rem;
+    width: 70rem;
+  }
+
+  .btnBlock {
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .infoCreateModules {
+    margin-left: 15px;
+  }
+
+  .infoCreateCards {
+    padding-top: 25px;
+    margin-right: 15px;
+  }
+
+  .formAreaCards {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .formControl {
+    min-height: 4rem;
+    /*height: auto;*/
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .btnBlock {
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .formAreaCards,
+  .formAreaModules,
+  .infoCreateModules {
+    margin: 10px;
+  }
+  .formControl {
+    min-height: 3rem;
+  }
+
+  .infoCreateCards {
+    padding: 15px;
+    margin: 0 10px;
+  }
+
+  .infoModules {
+    margin-bottom: 5px;
+  }
+
+  .btnBlock {
+    padding: 10px 55px;
+    margin: auto;
+  }
+}

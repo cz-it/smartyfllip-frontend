@@ -1,0 +1,166 @@
+/* .testbtn {
+    font-size: 27px;
+    text-align: center;
+    width: 140px;
+    height: 40px;
+    border-radius: 5px;
+    margin: 30px;
+    background: #F7BA34;
+    color: white;
+    border-color: white;
+    border-style: hidden
+} */
+
+/* .registerbtn {
+  font-size: 23px;
+  text-align: center;
+  width: 160px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 30px;
+  background: transparent;
+  color: white;
+  border-color: white;
+  border-style: solid;
+} */
+
+/* .planguage {
+  font-size: 19px;
+  text-align: center;
+  width: 229px;
+  height: 38px;
+  top: 659px;
+  left: 150px;
+  padding: 6px 13px 8px 13px;
+  gap: 0px;
+  border-radius: 5px;
+  border: 1px 0px 0px 0px;
+  margin: 30px;
+  background: whitesmoke;
+  color: #f7ba34;
+  border-color: #f7ba34;
+  border-style: solid;
+} */
+
+/* .level {
+  font-size: 22px;
+  text-align: center;
+
+  width: 129px;
+  height: 37px;
+  padding: 2px 24px 30px 28px;
+  border-radius: 5px;
+  border: 1px 0px 0px 0px;
+  margin: 30px;
+  background: whitesmoke;
+  color: #f7ba34;
+  border-color: #f7ba34;
+  border-style: solid;
+} */
+
+.mymodule {
+  cursor: pointer;
+}
+
+.tools {
+  font-family: Poppins;
+  font-size: 52px;
+  letter-spacing: 0.045em;
+  text-align: center;
+  margin-top: 200px;
+}
+
+.iconsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.icon {
+  margin: 40px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.icon:hover {
+  transform: scale(1.2);
+}
+
+.oracle {
+  margin: 60px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.oracle:hover {
+  transform: scale(1.2);
+}
+
+.h1 {
+  font-family: Poppins;
+  font-size: 52px;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: whitesmoke;
+}
+
+.iconsEmployee {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.iconCard {
+  width: 124px;
+  height: 116px;
+  border: 1px solid #4e7b79;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 5px;
+}
+
+.bottomicon {
+  margin-top: 40px;
+  margin-left: 20px;
+  margin-bottom: 110px;
+}
+
+.figma {
+  margin-left: 100px;
+  padding: 20px;
+}
+
+.stackContainer {
+  margin-top: 60px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-left: 140px;
+}
+
+/*---------ALEX-----------*/
+
+.customCard {
+  max-width: 504px;
+  max-height: 134px;
+  border-radius: 10px;
+  box-shadow: inset;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.customCard:hover {
+  transform: scale(1.05);
+}
+
+.txtCatd {
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 680px) {
+  .iconBlockCustom {
+    display: none;
+  }
+}

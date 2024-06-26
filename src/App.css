@@ -1,0 +1,55 @@
+.App {
+  margin: 0;
+  padding: 0;
+}
+
+.bg_greenDark {
+  background-color: #4e7b79;
+}
+
+.bg_greenWh {
+  background-color: #729594;
+}
+
+.bg_light {
+  background-color: #f1f1f5;
+}
+
+.txtHeaderWeis {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.txtW_s {
+  color: #fff;
+}
+
+.txtDark {
+  color: #444;
+}
+
+.txtRed {
+  color: red;
+}
+
+.iconBanner {
+  width: 430px;
+  height: 365px;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+@media (max-width: 680px) {
+  .iconBanner {
+    display: none;
+  }
+
+  .logincontainer {
+    padding: 0;
+  }
+}
+
+

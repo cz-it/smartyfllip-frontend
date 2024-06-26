@@ -1,0 +1,99 @@
+.iconHeaderBig {
+  width: 60px;
+  cursor: pointer;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.link:global.active {
+  color: #f7ba34;
+  font-weight: bold;
+}
+
+/*.regBtn {*/
+/*  color: white;*/
+/*  text-decoration: none;*/
+/*}*/
+
+.regBtn {
+  color: #729594;
+  text-decoration: none;
+}
+
+.btnSignIn:hover {
+  color: #ffc107 !important;
+}
+
+.btnSignOut{
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.btnSignOut:hover {
+  color: #ff7f7f !important;
+}
+
+.textInBtn {
+  color: #85b6b4;
+}
+
+.textInBtn:hover {
+  color: white !important;
+}
+
+.profilePic {
+  user-select: none;
+}
+
+.profilePic img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.user_data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 991px) {
+  .profilePic {
+    display: none;
+  }
+
+  .user_data {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 3rem !important;
+    justify-content: start;
+  }
+
+  .btnSignIn {
+    padding-left: 9px !important;
+  }
+
+  .btnSignIn:hover {
+    color: white !important;
+  }
+
+  .btnSignOut {
+    padding-left: 9px !important;
+    color: #ff6f61 !important;
+  }
+
+  .textInBtn {
+    color: white !important;
+  }
+
+  .regBtn{
+    background: none !important;
+    border: none !important;
+    padding: 10px !important;
+    margin: 0 !important;
+  }
+}

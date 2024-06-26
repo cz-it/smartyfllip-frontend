@@ -1,0 +1,29 @@
+.container {
+  padding: 20px 15px;
+}
+
+.myCard {
+    min-height: 430px;
+    text-align: center;
+  }
+  
+  .cardContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .flipCard {
+    justify-content: center;
+    width: 100px;
+  }
+
+  @media screen and (min-width: 1921px){
+    .container {
+      padding-top: 10rem;
+      height: 80rem;
+    }
+    .myCard {
+      min-height: 560px;
+    }
+  }
+  

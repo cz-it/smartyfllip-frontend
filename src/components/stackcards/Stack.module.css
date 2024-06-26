@@ -1,0 +1,84 @@
+.bg_stack {
+  width: 504px;
+  height: 134px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+  width: 504px;
+  height: 134px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.bg_stack:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px 1px rgba(0, 0, 0, 0.5);
+.bg_stack:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px 1px rgba(0, 0, 0, 0.5);
+}
+
+.icon {
+  /* width: 100px;
+  /* width: 100px;
+    height: 100px; */
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-bottom: 100px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-bottom: 100px;
+  margin-right: 20px;
+}
+
+.container {
+    display: flex;
+}
+
+.text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.StackName {
+    font-family: Nunito;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 32.74px;
+    padding-bottom: 150px;
+    padding-top: 20px;
+}
+
+.CreationDate {
+    font-family: Nunito;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.1px;
+    align-self: flex-end;
+    padding-bottom: 90px;
+}
+
+.Questions {
+    font-family: Nunito;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24.55px;
+    padding-bottom: 150px;
+    padding-top: 20px;
+    padding-left: 40px;
+  font-family: Nunito;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24.55px;
+  padding-bottom: 150px;
+  padding-top: 20px;
+}

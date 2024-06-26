@@ -1,0 +1,1713 @@
+openapi: 3.0.0
+info:
+  title: SmartyFlip_all-End-Points
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: Authorization
+  - name: Cards
+  - name: Modules
+  - name: Stacks
+  - name: Users
+paths:
+  /api/v1/auth/registration:
+    post:
+      tags:
+        - Authorization
+      summary: Register user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: admin
+                password: Admin1234!
+                firstName: Admin
+                lastName: Adminov
+                email: admin@gmail.com
+      responses:
+        "201":
+          description: Created
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                example: >-
+                  refresh-token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsImV4cCI6MTcxNjkwNzc3NH0.R0dDSTp5mxMHopLWgZ1MMqPV06NvUxNKP8kAJ8B-UTw;
+                  Max-Age=864000; Expires=Tue, 28 May 2024 14:49:34 GMT; Path=/;
+                  HttpOnly
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            X-XSS-Protection:
+              schema:
+                type: integer
+                example: "0"
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, no-store, max-age=0, must-revalidate
+            Pragma:
+              schema:
+                type: string
+                example: no-cache
+            Expires:
+              schema:
+                type: integer
+                example: "0"
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Date:
+              schema:
+                type: string
+                example: Sun, 19 May 2024 14:49:34 GMT
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=60
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 10
+                username: testuser
+                firstName: First
+                lastName: Last
+                email: test@outlook.com
+                image: https://gravatar.com/avatar/0?d=retro
+                dateRegistered: "2024-05-07"
+                roles:
+                  - USER
+                isEmailConfirmed: false
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Username validation error
+                  value:
+                    message: Validation error
+                    errors:
+                      username: >-
+                        Username must be between 5 and 20 characters long and
+                        contain only letters, digits(0-9), hyphens(-) and
+                        underscores(_)
+                example-1:
+                  summary: Last name not empty
+                  value:
+                    message: Validation error
+                    errors:
+                      lastName: Last name must contain only letters and spaces
+                example-2:
+                  summary: First name not empty
+                  value:
+                    message: Validation error
+                    errors:
+                      firstName: First name must contain only letters and spaces
+                example-3:
+                  summary: Email is incorrect
+                  value:
+                    message: Validation error
+                    errors:
+                      email: Email has invalid format
+                example-4:
+                  summary: Password validation error
+                  value:
+                    message: Validation error
+                    errors:
+                      password: Incorrect password format.
+        "409":
+          description: Conflict
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: "Error: username exists"
+                  value:
+                    message: Registration failed
+                    errors:
+                      username: A user with this username already exists
+                example-1:
+                  summary: "Error: email exists"
+                  value:
+                    message: Registration failed
+                    errors:
+                      email: A user with this email already exists
+  /api/v1/auth/login:
+    post:
+      tags:
+        - Authorization
+      summary: Login user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: admin
+                password: Admin1234!
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Set-Cookie:
+              schema:
+                type: string
+                example: access-token=hereWillBeAccessToken
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 2
+                username: user
+                firstName: First
+                lastName: Last
+                email: test@outlook.com
+                isEmailConfirmed: false
+                image: ""
+                dateRegistered: "2021-12-14"
+                roles:
+                  - USER
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Username or password is incorrect
+  /api/v1/auth/logout:
+    get:
+      tags:
+        - Authorization
+      summary: Logout user
+      security:
+        - noauthAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Successful logout
+  /api/v1/cards:
+    post:
+      tags:
+        - Cards
+      summary: Add card
+      description: SmartyFlip - application with learning flash cards
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                question: Question
+                answer: Answer
+                level: Easy
+                moduleId: 2
+      security:
+        - noauthAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                cardId: 7
+                question: Question
+                answer: Answer
+                level: EASY
+                moduleId: 2
+                moduleName: Java methods
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: "Error: question is short"
+                  value:
+                    message: Validation error
+                    errors:
+                      question: Question must be between 5 and 2500 characters
+                example-1:
+                  summary: "Error: answer is short"
+                  value:
+                    message: Validation error
+                    errors:
+                      answer: Answer must be between 5 and 2500 characters
+                example-2:
+                  summary: "Error: level is wrong"
+                  value:
+                    message: Validation error
+                    errors:
+                      level: "Level must be one of the following: EASY, MEDIUM, HARD"
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Module not found
+    get:
+      tags:
+        - Cards
+      summary: Find all cards
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - cardId: 5
+                    question: Question
+                    answer: Answer
+                    level: EASY
+                    moduleId: 2
+                    moduleName: Java list
+                  - cardId: 6
+                    question: Question
+                    answer: Answer
+                    level: EASY
+                    moduleId: 1
+                    moduleName: Java array
+                current_page: 0
+                total_elements: 2
+                total_pages: 1
+  /api/v1/cards/{cardId}:
+    get:
+      tags:
+        - Cards
+      summary: Find card by id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cardId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                cardId: 2
+                question: Question
+                answer: Answer
+                level: EASY
+                moduleId: 2
+                moduleName: Java array
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Card not found
+    put:
+      tags:
+        - Cards
+      summary: Edit cards
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                question: Question
+                answer: Answer
+                level: MEDIUM
+                moduleId: 2000
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cardId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                cardId: 2
+                question: Question
+                answer: Answer
+                level: EASY
+                moduleId: 1
+                moduleName: Java array
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: "Error: question is short"
+                  value:
+                    message: Validation error
+                    errors:
+                      question: Question must be between 5 and 2500 characters
+                example-1:
+                  summary: "Error: answer is short"
+                  value:
+                    message: Validation error
+                    errors:
+                      answer: Answer must be between 5 and 2500 characters
+                example-2:
+                  summary: "Error: level is wrong"
+                  value:
+                    message: Validation error
+                    errors:
+                      level: "Level must be one of the following: EASY, MEDIUM, HARD"
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Module not found
+    delete:
+      tags:
+        - Cards
+      summary: Delete card
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cardId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                cardId: 2
+                question: Question
+                answer: Answer
+                level: EASY
+                moduleId: 1
+                moduleName: Java array
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Card not found
+  /api/v1/cards/modules/{moduleId}:
+    get:
+      tags:
+        - Cards
+      summary: Find cards by moduleId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: moduleId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - cardId: 3
+                  question: Question
+                  answer: Answer
+                  level: EASY
+                  moduleId: 2
+                  moduleName: Java list
+                - cardId: 5
+                  question: Question
+                  answer: Answer
+                  level: EASY
+                  moduleId: 2
+                  moduleName: Java list
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Module not found
+  /api/v1/modules:
+    post:
+      tags:
+        - Modules
+      summary: Add module
+      description: moduleId -> auto created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                moduleName: moduleName
+                username: user
+                stackName: StackName
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                moduleId: 5
+                moduleName: moduleName
+                stackId: 1
+                stackName: Java
+                username: user
+                dateCreated: "2021-12-14T11:39:05"
+                cardsCount: 20
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Validation error
+                errors:
+                  moduleName: moduleName must be greater than 5 characters
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Stack not found
+    get:
+      tags:
+        - Modules
+      summary: Find all modules
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - moduleId: 5
+                    moduleName: moduleName
+                    stackId: 1
+                    stackName: Java
+                    username: user
+                    dateCreated: "2021-12-14T11:39:05"
+                    cardsCount: 20
+                    tags:
+                      - Java
+                      - Spring
+                      - Backend
+                      - SQL
+                  - moduleId: 7
+                    moduleName: moduleName
+                    stackId: 1
+                    stackName: Java
+                    username: user
+                    dateCreated: "2021-12-14T11:39:05"
+                    cardsCount: 20
+                    tags:
+                      - Java
+                      - Spring
+                      - Backend
+                      - SQL
+                current_page: 0
+                total_elements: 2
+                total_pages: 1
+  /api/v1/modules/{moduleId}:
+    get:
+      tags:
+        - Modules
+      summary: Find module by id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: moduleId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                moduleId: 5
+                moduleName: moduleName
+                stackId: 1
+                stackName: Java
+                username: user
+                dateCreated: "2021-12-14T11:39:05"
+                cardsCount: 20
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Module not found
+    put:
+      tags:
+        - Modules
+      summary: Edit module
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                moduleName: moduleName
+                username: user
+                stackName: stackName
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: moduleId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                moduleId: 5
+                moduleName: moduleName
+                stackId: 1
+                stackName: Java
+                username: user
+                dateCreated: "2021-12-14T11:39:05"
+                cardsCount: 20
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Validation error
+                errors:
+                  moduleName: moduleName must be greater than 5 characters
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Stack not found
+    delete:
+      tags:
+        - Modules
+      summary: Delete module
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: moduleId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                moduleId: 5
+                moduleName: moduleName
+                stackId: 1
+                stackName: Java
+                username: user
+                dateCreated: "2021-12-14T11:39:05"
+                cardsCount: 20
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Module not found
+  /api/v1/modules/user/{userId}:
+    get:
+      tags:
+        - Modules
+      summary: Find modules by userId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - moduleId: 5
+                    moduleName: moduleName
+                    stackId: 1
+                    stackName: Java
+                    username: user
+                    dateCreated: "2021-12-14T11:39:05"
+                    cardsCount: 20
+                    tags:
+                      - Java
+                      - Spring
+                      - Backend
+                      - SQL
+                  - moduleId: 7
+                    moduleName: moduleName
+                    stackId: 1
+                    stackName: Java
+                    username: user
+                    dateCreated: "2021-12-14T11:39:05"
+                    cardsCount: 20
+                    tags:
+                      - Java
+                      - Spring
+                      - Backend
+                      - SQL
+                current_page: 0
+                total_elements: 2
+                total_pages: 1
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User not found
+  /api/v1/modules/stacks/{stackId}:
+    get:
+      tags:
+        - Modules
+      summary: Find modules by stackId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: stackId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - moduleId: 5
+                    moduleName: moduleName
+                    stackId: 1
+                    stackName: Java
+                    username: user
+                    dateCreated: "2021-12-14T11:39:05"
+                    cardsCount: 20
+                    tags:
+                      - Java
+                      - Spring
+                      - Backend
+                      - SQL
+                  - moduleId: 7
+                    moduleName: moduleName
+                    stackId: 1
+                    stackName: Java
+                    username: user
+                    dateCreated: "2021-12-14T11:39:05"
+                    cardsCount: 20
+                    tags:
+                      - Java
+                      - Spring
+                      - Backend
+                      - SQL
+                current_page: 0
+                total_elements: 2
+                total_pages: 1
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Stack not found
+  /api/v1/modules/name:
+    post:
+      tags:
+        - Modules
+      summary: Find modules by name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: moduleName
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - moduleId: 5
+                    moduleName: moduleName
+                    stackId: 1
+                    stackName: Java
+                    username: user
+                    dateCreated: "2021-12-14T11:39:05"
+                    cardsCount: 20
+                    tags:
+                      - Java
+                      - Spring
+                      - Backend
+                      - SQL
+                  - moduleId: 7
+                    moduleName: moduleName
+                    stackId: 1
+                    stackName: Java
+                    username: user
+                    dateCreated: "2021-12-14T11:39:05"
+                    cardsCount: 20
+                    tags:
+                      - Java
+                      - Spring
+                      - Backend
+                      - SQL
+                current_page: 0
+                total_elements: 2
+                total_pages: 1
+  /api/v1/modules/period:
+    post:
+      tags:
+        - Modules
+      summary: Find modules by period
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                dateFrom: "2024-01-25"
+                dateTo: "2024-06-23"
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - moduleId: 5
+                    moduleName: moduleName
+                    stackId: 1
+                    stackName: Java
+                    username: user
+                    dateCreated: "2021-12-14T11:39:05"
+                    cardsCount: 20
+                    tags:
+                      - Java
+                      - Spring
+                      - Backend
+                      - SQL
+                  - moduleId: 7
+                    moduleName: moduleName
+                    stackId: 1
+                    stackName: Java
+                    username: user
+                    dateCreated: "2021-12-14T11:39:05"
+                    cardsCount: 20
+                    tags:
+                      - Java
+                      - Spring
+                      - Backend
+                      - SQL
+                current_page: 0
+                total_elements: 2
+                total_pages: 1
+  /api/v1/stacks:
+    post:
+      tags:
+        - Stacks
+      summary: Add stack
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                stackName: JAVA
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                stackId: 4
+                stackName: Java
+                modulesCount: 0
+        "409":
+          description: Conflict
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Stack with this name already exists
+    get:
+      tags:
+        - Stacks
+      summary: Find all stacks
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - stackId: 1
+                  stackName: Java
+                  modulesCount: 10
+                - stackId: 2
+                  stackName: JS
+                  modulesCount: 12
+                - stackId: 3
+                  stackName: React
+                  modulesCount: 15
+  /api/v1/stacks/{stackId}:
+    get:
+      tags:
+        - Stacks
+      summary: Find stack by id
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: stackId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                stackId: 1
+                stackName: Java
+                modulesCount: 10
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Stack not found
+    put:
+      tags:
+        - Stacks
+      summary: Edit stack
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                stackName: JS
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: stackId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                stackId: 1
+                stackName: JS
+                modulesCount: 10
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Stack not found
+    delete:
+      tags:
+        - Stacks
+      summary: Delete stack
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: stackId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                stackId: 2
+                stackName: Java
+                modulesCount: 0
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Stack not found
+  /api/v1/users/{userId}:
+    get:
+      tags:
+        - Users
+      summary: Find user by id
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                username: admin
+                firstName: Admin
+                lastName: Adminov
+                email: admin@gmail.com
+                image: https://gravatar.com/avatar/0?d=retro
+                dateRegistered: "2024-05-18"
+                roles:
+                  - ADMINISTRATOR
+                  - USER
+                isEmailConfirmed: true
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User not found
+    delete:
+      tags:
+        - Users
+      summary: Delete user
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 2
+                username: user
+                firstName: User
+                lastName: Userov
+                email: user@gmail.com
+                image: https://gravatar.com/avatar/0?d=retro
+                dateRegistered: "2024-05-18"
+                roles:
+                  - USER
+                isEmailConfirmed: true
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User not found
+  /users/{userId}:
+    put:
+      tags:
+        - Users
+      summary: Update user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstName: First
+                lastName: Last
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                username: admin
+                firstName: First
+                lastName: Last
+                email: admin@gmail.com
+                image: https://gravatar.com/avatar/0?d=retro
+                dateRegistered: "2024-05-18"
+                roles:
+                  - ADMINISTRATOR
+                  - USER
+                isEmailConfirmed: true
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User not found
+  /api/v1/users/{userId}/password:
+    put:
+      tags:
+        - Users
+      summary: Change password
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: X-Password
+          in: header
+          schema:
+            type: string
+          example: NEW PASSWORD
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "204":
+          description: No Content
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Successfully changed password
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Password validation error
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User not found
+  /api/v1/users/{userId}/role/{role}:
+    put:
+      tags:
+        - Users
+      summary: Add user role
+      requestBody:
+        content: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: role
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                username: testuser
+                roles:
+                  - USER
+                  - MODERATOR
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User role not found
+    delete:
+      tags:
+        - Users
+      summary: Remove user role
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: role
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                username: testuser
+                roles:
+                  - USER
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User role not found
+  /api/v1/users:
+    get:
+      tags:
+        - Users
+      summary: Get All Users
+      parameters:
+        - name: size
+          in: query
+          schema:
+            type: integer
+          example: "10"
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: "0"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 3
+                    username: testuser
+                    firstName: First
+                    lastName: Last
+                    email: test@outlook.com
+                    image: https://gravatar.com/avatar/0?d=retro
+                    dateRegistered: "2024-05-18"
+                    roles:
+                      - USER
+                    isEmailConfirmed: false
+                  - id: 4
+                    username: testuser2
+                    firstName: First
+                    lastName: Last
+                    email: asdds@rr
+                    image: https://gravatar.com/avatar/0?d=retro
+                    dateRegistered: "2024-05-18"
+                    roles:
+                      - USER
+                    isEmailConfirmed: false
+                  - id: 1
+                    username: admin
+                    firstName: First
+                    lastName: Last
+                    email: admin@gmail.com
+                    image: https://gravatar.com/avatar/0?d=retro
+                    dateRegistered: "2024-05-18"
+                    roles:
+                      - ADMINISTRATOR
+                      - USER
+                    isEmailConfirmed: true
+                current_page: 0
+                total_elements: 3
+                total_pages: 1
+  /api/v1/users/me:
+    get:
+      tags:
+        - Users
+      summary: Get my information
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 1
+                username: admin
+                firstName: First
+                lastName: Last
+                email: admin@gmail.com
+                image: https://gravatar.com/avatar/0?d=retro
+                dateRegistered: "2024-05-18"
+                roles:
+                  - ADMINISTRATOR
+                  - USER
+                isEmailConfirmed: true

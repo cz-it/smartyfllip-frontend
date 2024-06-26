@@ -53,7 +53,7 @@
 
 To get a local copy up and running, follow these simple example steps:
 
-1. Clone the repository to you machine using your terminal:
+1. Clone the repository to your machine using your terminal:
    ```
    git clone git@github.com:VitalKo7/SmartyFlip_FrontEnd.git
    ```
@@ -65,7 +65,7 @@ To get a local copy up and running, follow these simple example steps:
    ```
    npm start
    ```
-   Visit [localhost](http://localhost:5173/) and use the desired enpoints to view the content
+   Visit [localhost](http://localhost:5173/) and use the desired endpoints to view the content
 
 ## Authors
 
@@ -88,4 +88,4 @@ Contributions, issues, and feature requests are welcome!
 ## Show your support
 
 Give a ⭐️ if you like this project!
-# smartyfllip-frontend
+# smartyflip-frontend

@@ -1,0 +1,610 @@
+.bg {
+  background-color: #729594;
+  padding: 57px;
+  display: flex;
+  align-items: center;
+}
+
+.listNumber,
+.userData,
+.actionbtn1,
+.actionbtn2 {
+  margin: 0.5rem;
+}
+
+/* Left container with buttons*/
+.leftContainer {
+  width: 500px;
+  min-height: 62.5rem;
+  border-radius: 20px;
+  background: rgba(241, 241, 245, 1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.leftbtn {
+  font-size: 2em;
+  color: rgba(78, 123, 121, 1);
+  text-decoration: none;
+  padding: 1.3rem 1.8rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.leftbtn:hover {
+  border-radius: 20px;
+  background-color: #4e7b79;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: whitesmoke;
+}
+
+.activeButton {
+  background-color: rgba(114, 149, 148, 0.7);
+  color: #fff;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Right container with Inside and Bottom containers */
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Inside container */
+.insideContainer {
+  height: 120px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-left: 70px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.input,
+.searchbtn,
+.searchstackbtn,
+.addstackbtn {
+  width: 11rem;
+  height: 3.5rem;
+  margin: 5px;
+}
+
+.searchbtn,
+.searchstackbtn,
+.addstackbtn {
+  font-size: 1.2em;
+}
+
+.input {
+  font-style: italic;
+  border-radius: 10px;
+  border: 2px solid rgb(197, 227, 221);
+  text-align: center;
+}
+
+.searchbtn {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-weight: 300;
+  border-radius: 10px;
+  border: 2px solid rgba(23, 166, 138, 1);
+}
+
+.searchstackbtn {
+  font-weight: 300;
+  border-radius: 10px;
+  border: 2px solid rgba(23, 166, 138, 1);
+}
+.addstackbtn {
+  border-radius: 20px;
+  background-color: rgba(114, 149, 148, 0.7);
+  color: whitesmoke;
+}
+
+.addstackbtn:hover {
+  background-color: #4e7b79;
+}
+
+/* Bottom container */
+.bottomContainer {
+  height: 700px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-left: 70px;
+  padding: 10px;
+}
+
+.actionbtn1,
+.actionbtn2,
+.addstackbtn,
+.leftbtn,
+.pagebtn {
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.actionbtn1:hover,
+.actionbtn2:hover,
+.addstackbtn:hover,
+.leftbtn:hover,
+.pagebtn:hover {
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.actionbtn1,
+.actionbtn2 {
+  width: 70px;
+  height: 30px;
+  color: rgba(78, 123, 121, 1);
+  background-color: transparent;
+}
+
+.actionbtn1:hover {
+  background-color: rgba(227, 213, 16, 0.7);
+}
+
+.actionbtn2:hover {
+  background-color: rgba(227, 40, 40, 0.7);
+  color: whitesmoke;
+}
+
+.activeButton {
+  background-color: rgba(114, 149, 148, 0.7);
+  color: #fff;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.searchbtn {
+  width: 220px;
+  height: 60px;
+  font-weight: 600;
+  font-size: 25px;
+  border-radius: 10px;
+  border: 2px solid rgba(23, 166, 138, 1);
+}
+
+.searchstackbtn {
+  width: 220px;
+  height: 60px;
+  font-weight: 600;
+  font-size: 25px;
+  border-radius: 10px;
+  border: 2px solid rgba(23, 166, 138, 1);
+  margin-right: 270px;
+}
+
+/*  Pagination  */
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: -11rem;
+}
+
+.pagebtn {
+  width: 100px;
+  border-radius: 20px;
+  color: whitesmoke;
+  border: none;
+  cursor: pointer;
+  margin: 20px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.pagebtn:hover {
+  border-radius: 20px;
+  background: rgba(78, 123, 121, 1);
+  color: whitesmoke;
+}
+
+.pagetext {
+  color: white;
+}
+
+/* ---------------  Adaptive styles for screens more then 1921px  ------------ */
+@media screen and (min-width: 1921px) {
+  .bg {
+    min-height: 84rem;
+  }
+
+  .leftContainer {
+    max-width: 16rem;
+    min-height: 64rem;
+    margin-left: 28rem;
+  }
+  .insideContainer,
+  .bottomContainer {
+    max-width: 104rem;
+  }
+
+  .paginationContainer {
+    margin-left: -45.5rem;
+  }
+
+  .input,
+  .searchstackbtn,
+  .searchbtn,
+  .addstackbtn {
+    width: 16rem;
+    height: 4rem;
+  }
+
+  .pagebtn {
+    margin: 3rem;
+    font-size: 2em;
+    width: 200px;
+  }
+
+  .pagetext {
+    font-size: 2em;
+  }
+
+  .bottomContainer {
+    max-height: 700px; /* Adjust the height of table */
+    overflow-y: auto; /* Enables vertical scrollbar */
+
+    /* Color and shadow for scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: rgb(243, 195, 44) transparent;
+
+    /* Sticky header feature */
+    /* Works only if your table is inside .table-responsive-sm bootstrap class */
+    .table {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+/* ---------------  Adaptive styles for screens more then 768px  and less then 1439px ------------ */
+@media screen and (min-width: 768px) and (max-width: 2559px) {
+  .leftContainer {
+    max-width: 10rem;
+  }
+
+  .leftbtn {
+    font-size: 1em;
+  }
+
+  .input,
+  .searchstackbtn,
+  .searchbtn,
+  .addstackbtn {
+    width: 9rem;
+    height: 3rem;
+    font-size: 1em;
+  }
+
+  .pagebtn {
+    margin: 3rem;
+    font-size: 1.2em;
+  }
+
+  .pagetext {
+    font-size: 1.2em;
+  }
+
+  /* Table */
+  .bottomContainer {
+    max-height: 44rem; /* Adjust the height of table */
+    overflow-y: auto; /* Enables vertical scrollbar */
+
+    /* Color and shadow for scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: rgb(243, 195, 44) transparent;
+
+    /* Sticky header feature */
+    /* Works only if your table is inside .table-responsive-sm bootstrap class */
+    .table {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+/* ++++++++++++++   Adaptive styles for screens frm 680px up to 768px  +++++++++++++++++++ */
+
+@media screen and (min-width: 680px) and (max-width: 768px) {
+  .bg {
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .leftContainer {
+    max-width: 500px;
+    min-height: auto;
+    margin: auto;
+    margin-bottom: 20px;
+    flex-direction: row;
+    padding: 5px 30px;
+  }
+
+  .insideContainer {
+    flex-direction: column;
+    min-height: 10rem;
+    margin-left: 0;
+  }
+
+  .bottomContainer {
+    width: 100%;
+    min-height: auto;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .smallContainer,
+  .smallStackContainer {
+    ruby-merge: collapse;
+    margin-left: 5px;
+    font-size: 0.8em;
+  }
+
+  .userContainer,
+  .stackContainer,
+  .cardContainer {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .leftbtn {
+    text-align: center;
+    width: 200px;
+    font-size: 1em;
+    padding: 1rem 1.3rem;
+  }
+
+  .btns,
+  .stackbtns {
+    font-size: 1em;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .input,
+  .addstackbtn {
+    width: 200px;
+  }
+
+  .searchstackbtn,
+  .searchbtn {
+    width: 200px;
+    font-size: 1em;
+    margin-right: 0;
+  }
+
+  .paginationContainer {
+    margin: 0;
+  }
+}
+
+/* ++++++++++++++   Adaptive styles for screens up to 768px  +++++++++++++++++++ */
+@media screen and (max-width: 679px) {
+  .bg {
+    padding: 1rem;
+    flex-direction: column;
+  }
+
+  .leftContainer {
+    width: 100%;
+    min-height: auto;
+    margin-left: 0;
+    margin-bottom: 20px;
+    padding: 0.8rem;
+  }
+
+  .bottomContainer {
+    width: 100%;
+    min-height: auto;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .insideContainer {
+    flex-direction: column;
+    min-height: 10rem;
+    margin-left: 0;
+  }
+
+  .smallContainer,
+  .smallStackContainer {
+    ruby-merge: collapse;
+    margin-left: 5px;
+    font-size: 0.8em;
+  }
+
+  .userContainer,
+  .stackContainer,
+  .cardContainer {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .leftbtn {
+    text-align: center;
+    width: 12rem;
+    height: 3.5rem;
+    font-size: 1em;
+    padding: 1rem 1.3rem;
+  }
+
+  .btns,
+  .stackbtns {
+    font-size: 1em;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .input,
+  .addstackbtn {
+    width: 12rem;
+  }
+
+  .searchstackbtn,
+  .searchbtn {
+    width: 12rem;
+    font-size: 1em;
+    margin-right: 0;
+  }
+
+  .paginationContainer {
+    margin: 0;
+    justify-content: space-evenly;
+  }
+
+  .pagebtn {
+    margin: 0;
+  }
+
+  .pagetext {
+    font-size: 1em;
+  }
+}
+
+/*===============================  Table  =====================================*/
+
+table {
+  background-color: white;
+  border-collapse: separate; /* Change this to prevent border-radius issues */
+  border-spacing: 0; /* Borders between cells */
+  width: 100%;
+  margin: auto;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+#topLeft {
+  border-top-left-radius: 14px;
+}
+
+#topRight {
+  border-top-right-radius: 14px;
+}
+
+.borderBottomLeftRadius {
+  border-bottom-left-radius: 14px;
+}
+
+.borderBottomRightRadius {
+  border-bottom-right-radius: 14px;
+}
+
+table tr:nth-child(even) {
+  background-color: #e1e7e1; /* This will create stripes by changing the background color of even rows */
+}
+
+table tr:hover {
+  background-color: rgba(245, 222, 179, 0.34);
+  animation-delay: 2ms;
+}
+
+.tags {
+  text-align: center;
+  background-color: rgba(238, 234, 207, 0.44);
+}
+
+td,
+th {
+  border: 1px solid #000;
+  padding: 5px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 760px) {
+  .bottomContainer {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enables vertical scrollbar */
+
+    /* Color and shadow for scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: rgb(243, 195, 44) transparent;
+
+    /* Sticky header feature */
+    /* Works only if your table is inside .table-responsive-sm bootstrap class */
+    .table {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .divider {
+    border: none;
+  }
+
+  table {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  table,
+  tbody,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    float: left; /* ie9 fix */
+    width: 100%;
+    clear: both;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr {
+    border: 1px solid #ccc;
+  }
+  td,
+  th {
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  td {
+    padding-left: 50%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #e1e7e1; /* Create stripes by changing the background color of even rows */
+  }
+
+  /* Label the data */
+
+  /* USER, MODULES, STACKS, CARDS  */
+  #userTable td:before,
+  #modulesTable td:before,
+  #stacksTable td:before,
+  #cardsTable td:before {
+    content: attr(data-title);
+    font-weight: bold;
+    float: left;
+    width: 95%;
+    padding: 0 0 0 1%;
+    margin-left: -100%;
+  }
+
+  #userTable td {
+    display: block;
+    width: 100%;
+  }
+}
