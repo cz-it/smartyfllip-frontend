@@ -22,13 +22,13 @@
 
 <!-- https:// -->
 
-- [Live Demo Link](https://)
+- [Live Demo Link](https://smartyflip.de)
 
 ## Team members
 
 - [Vit](https://github.com/)
 - [Yakub](https://github.com/)
-- [Igor](https://github.com/)
+- [Igor](https://github.com/cz-it)
 - [Alex](https://github.com/)
 - [Bohdan](https://github.com/)
 - [Mike](https://github.com/)
@@ -55,7 +55,7 @@ To get a local copy up and running, follow these simple example steps:
 
 1. Clone the repository to your machine using your terminal:
    ```
-   git clone git@github.com:VitalKo7/SmartyFlip_FrontEnd.git
+   git clone https://github.com/cz-it/smartyfllip-frontend.git
    ```
 2. Install the dependencies:
    ```
