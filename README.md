@@ -16,7 +16,7 @@
 - Proper Exception Handling
 - SignUp and Login
 - Add, get, modify and delete items in database
-- Data Stored in the database(PostgreSQL)
+- Data Stored in the database (PostgreSQL)
 
 ## Live Demo
 
@@ -26,15 +26,15 @@
 
 ## Team members
 
-- [Vit](https://github.com/)
-- [Yakub](https://github.com/)
-- [Igor](https://github.com/cz-it)
-- [Alex](https://github.com/)
-- [Bohdan](https://github.com/)
-- [Mike](https://github.com/)
-- [Siyab](https://github.com/)
-- [Kate](https://github.com/)
-- [Serhii](https://github.com/)
+- [Vit](https://github.com/VitalKo7) Team lead
+- [Yakub](https://github.com/) API architecture, Backend, Frontend
+- [Igor](https://github.com/cz-it) API and DB architecture, Backend, Frontend
+- [Alex](https://github.com/) Frontend
+- [Bohdan](https://github.com/) Frontend
+- [Mike](https://github.com/) Frontend
+- [Siyab](https://github.com/) QA, Team lead-QA
+- [Kate](https://github.com/) QA
+- [Serhii](https://github.com/) QA
 
 ## Prerequisites
 
